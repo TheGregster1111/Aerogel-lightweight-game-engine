@@ -1,0 +1,9 @@
+Build:
+    - EXE file
+    - Assets:
+        - Locales:
+    - Saves:
+    - Log.txt
+    - Maps:
+        - .COMMENT:
+            - Maps folder is only generated if the user has enabled that option

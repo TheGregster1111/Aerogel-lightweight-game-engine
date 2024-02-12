@@ -1,0 +1,88 @@
+root:
+    - README.md:
+        - Everything needs documentation but especially:
+            - locale.hpp
+            - game_object.hpp
+            - ui.hpp
+            - See Notes file for notes about what should be in this file
+
+    - Build:
+        - Debug:
+        - .COMMENTS:
+            - The location for the debug build of the game. Currently only performance testing
+        - Release:
+        - .COMMENTS:
+            - The location for the final build of the game.
+
+    - Tools:
+        - compiler.cpp:
+            - Calls the c++ compiler on engine.cpp
+            - Creates the folders for the built game, like /save/
+            - Compile options is set in options.hpp
+
+        - performance.hpp:
+            - Tests performance of game such as time per frame, memory, etc
+
+    - options.hpp:
+        - FPS
+        - Screen dimensions or fullscreen
+        - EXE name and game folder name
+        - Option to compile game for debugging, integrating performance.hpp into the game
+        - Compile with maps option. If enabled, all maps in maps folder will be copied to Build Maps folder.
+
+    - Engine:
+        - engine.cpp:
+            - Runs all files in this folder and main.cpp's Update() every frame. Runs main.cpp's Init()
+        - input.hpp:
+            - Used to read player inputs
+            - Data is used as argument for Update()
+        - physics.hpp
+        - classes.hpp
+        - game_objects.hpp:
+            - This file contains templates for game objects that will use physics
+            - Contains list of game objects
+        - audio.hpp
+        - Renderer:
+            - camera.hpp
+            - ui.hpp:
+                - Provides the API for UI
+            - renderer.cpp:
+                - Renders all game objects and map tiles visible by camera to screen.
+                - Renders game UI defined in some program file
+            - loader.hpp:
+                - Load and unload assets 
+                - Async
+        - localization.hpp:
+            - API:
+                - Cache language from locale
+                - Retrieve string from cache using keys
+
+    - Program:
+        - main.cpp:
+            - Main file and user files go into this folder
+            - Init()
+            - Update(Inputs)
+
+        - save_and_load.hpp:
+            - Cache(game_object) saves game object to save cache
+            - Save() Save save cache to save file
+            - Load(Filename) Load save file to save cache.
+
+    - Map:
+        - map_generator.cpp:
+            - Functions:
+                - generate() Contains user made code
+                - load(Filename) Loads from ./Maps/Filename
+                - save(Filename) Save output of generate() into ./Maps/Filename
+
+        - Maps:
+            - map.yml:
+                - Map files can be place into this folder to use instead of generating a new one from algorithms
+    
+    - Assets:
+        - Locales:
+            - en.yml
+        - Tilemaps:
+        - Sprites:
+
+# Events?
