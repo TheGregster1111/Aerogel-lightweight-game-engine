@@ -1,4 +1,4 @@
-README
+DOCS.md
 {
     High priority
     {
