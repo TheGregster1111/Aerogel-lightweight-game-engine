@@ -104,7 +104,7 @@ Aerogel:
             - Load(Filename) Load save file to save cache.
 
   - - Map:
-      - map_generator.cpp:
+      - map_generator.hpp:
         - <COMMENT>:
           - Functions:
             - generate() Contains user made code

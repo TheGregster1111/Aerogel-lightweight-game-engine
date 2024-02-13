@@ -16,11 +16,11 @@ inputFile = "fileStructure.yml"
 outputFile = "fileStructure.fsys"
 sameFolder = True # Same as this file? If True no need to use inputOutputFolder
 
-rootFolderLocation = "/home/susanne/source/repos/C++/Testing/"
-mode = 1
+rootFolderLocation = "/home/susanne/source/repos/C++/" #Where directories and files will be made
+mode = 3
 # 0: Just print result
 # 1: Generate text into output file
-# 2: Generate folders and files
+# 2: Generate directories and files
 useColours = True
 useExtension = True # Use with vs code extension made to display colour and add collapsible regions?
 
@@ -179,40 +179,46 @@ def examine(data, indent="", fileComment=False, layer=0):
 
     return output
 
-#Work in progress
-def generate(data, path=""):
-    output = ""
+def build(data, path:str):
     index = 1
-    lastWasFile = False
     if type(data) == dict: #Must be root folder
         name = list(data.keys())[0]
         if not os.path.exists(path + name):
             os.mkdir(path + name)
 
-        examine(data[name], path + name + "/")
+        build(data[name], path + name + "/")
     
-    elif type(data) == list:
-        
+    if type(data) == list:
         for item in data:
+            if type(item) == list: # Directory
+                name = list(item[0].keys())[0]
 
-            if type(item) == dict:
-                name = list(item.keys())[0]
                 if not os.path.exists(path + name):
                     os.mkdir(path + name)
 
-                if not "." in name:
+                build(item[0][name], path + name + "/")
+                index += 1
+                continue                
 
-                    examine(item[name], path + name + "/")
+            elif type(item) == dict: # File or comment
 
-            else:
                 name = list(item.keys())[0]
-                if not os.path.exists(path + name):
-                    os.mkdir(path + name)
-                    with open(path + name, 'w') as file:
-                        file.write('')
+                
+                if name != "<COMMENT>": # File
+                    if not os.path.exists(path + name):
+                        with open(path + name, 'w') as file:
+                            file.write('')
+
+                index += 1
+                lastWasFile = False
+                continue
+            
+            # File
+            if not os.path.exists(path + item):
+                with open(path + item, 'w') as file:
+                    file.write('')
 
             index += 1
-    return output
 
 if sameFolder:
     inputOutputFolder = os.path.dirname(os.path.abspath(__file__)) + "/"
@@ -228,3 +234,6 @@ with open(inputOutputFolder + inputFile, "r") as file1:
         if mode == 1:
             with open(inputOutputFolder + outputFile, "w") as file2:
                 file2.write(output)
+
+    elif mode == 3:
+        build(data, rootFolderLocation)
