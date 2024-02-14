@@ -1,6 +1,6 @@
 # How to build game
 
-Open CMakeLists.txt and edit this line based on OS.
+Open CMakeLists.txt and switch which COMMAND is commented based on OS.
 ```CMake
 add_custom_command(
     TARGET GAME_EXECUTABLE POST_BUILD
@@ -14,7 +14,7 @@ add_custom_command(
 \
 Then enter these two commands into the terminal:
 
-```shell
+```console
 user@pc:~/Aerogel$ cmake .
 user@pc:~/Aerogel$ cmake --build .
 ```
