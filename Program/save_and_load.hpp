@@ -8,7 +8,7 @@ void Save ()
 
 }
 
-/*Game object vector*/ void Load ()
+void Load ()
 {
     
 }

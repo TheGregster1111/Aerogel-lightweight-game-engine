@@ -12,37 +12,13 @@ Aerogel:
 
 
   - - Build:
-      - - Debug:
-          - <COMMENT>:
-            - The location for the debug build of the game. Currently only performance testing
-      - - Release:
-          - <COMMENT>:
-            - The location for the final build of the game.
 
 
   - - Tools:
-      - compiler.sh:
+      - performance.hpp:
         - <COMMENT>:
-          - Calls the c++ compiler on engine.cpp
-          - Creates the folders for the built game, like /save/
-          - Compile options is set in Makefile
-            
-        - compiler.bat:
-          - <COMMENT>:
-            - Calls the c++ compiler on engine.cpp
-            - Creates the folders for the built game, like /save/
-            - Compile options is set in Makefile
+          - Tests performance of game such as time per frame, memory, etc
 
-        - performance.hpp:
-          - <COMMENT>:
-            - Tests performance of game such as time per frame, memory, etc
-
-
-  - Makefile:
-    - <COMMENT>:
-      - EXE name and game folder name
-      - Option to compile game for debugging, integrating performance.hpp into the game
-      - Compile with maps option. If enabled, all maps in maps folder will be copied to Build Maps folder.
 
   - options.hpp:
     - <COMMENT>:
@@ -66,6 +42,12 @@ Aerogel:
       - audio.hpp
 
       - - Renderer:
+          - <comment>:
+            - The two window files provides an abstraction layer for windows and linux
+
+          - window_windows.hpp
+
+          - window_linux.hpp
       
           - camera.hpp
 
@@ -103,18 +85,12 @@ Aerogel:
             - Save() Save save cache to save file
             - Load(Filename) Load save file to save cache.
 
-  - - Map:
-      - map_generator.cpp:
+      - map.hpp:
         - <COMMENT>:
           - Functions:
             - generate() Contains user made code
             - load(Filename) Loads from ./Maps/Filename
             - save(Filename) Save output of generate() into ./Maps/Filename
-
-    - Maps:
-      - map.yml:
-        - <COMMENT>:
-          - Map files can be place into this folder to use instead of generating a new one from algorithms
   
   - - Assets:
       - - Locales:
@@ -123,6 +99,16 @@ Aerogel:
 
       - - Tilemaps:
       - - Sprites:
+      - - Scenes:
+          - <COMMENT>:
+            - Map files can be place into this folder to use instead of generating a new one from algorithms
+
+
+  - CMakeLists.txt:
+    - <COMMENT>:
+      - EXE name and game folder name
+      - Option to compile game for debugging, integrating performance.hpp into the game
+      - Compile with maps option. If enabled, all maps in maps folder will be copied to Build Maps folder.
 
   - .gitignore:
     - <COMMENT>:
