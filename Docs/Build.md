@@ -14,7 +14,7 @@ add_custom_command(
 \
 Then enter these two commands into the terminal:
 
-```shell
+```console
 user@pc:~/Aerogel$ cmake .
 user@pc:~/Aerogel$ cmake --build .
 ```
