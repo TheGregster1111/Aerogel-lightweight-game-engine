@@ -14,15 +14,12 @@ link_directories(GAME_EXECUTABLE ${GTK3_LIBRARY_DIRS})
 
 add_executable(GAME_EXECUTABLE "Engine/engine.cpp")
 
-add_custom_target(
-    run ALL
-    COMMAND python ${CMAKE_CURRENT_SOURCE_DIR}/compile.py ${CMAKE_CURRENT_SOURCE_DIR}
-)
 add_custom_command(
-    OUTPUT log    
-    DEPENDS GAME_EXECUTABLE
-    COMMAND cp -R Ass path_to_destination/    # Linux
-    #COMMAND    # Windows
+    TARGET GAME_EXECUTABLE POST_BUILD
+    COMMAND cp -R Assets/ Build/Assets    # Linux
+    #COMMAND                              # Windows
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT "Copying assets..."
 )
 
 target_link_libraries(GAME_EXECUTABLE ${GTK3_LIBRARIES})

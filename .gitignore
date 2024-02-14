@@ -1,6 +1,6 @@
-Notes/**
+Notes/
 .vscode/
-Build/**
+Build/
 
 cmake_install.cmake
 CMakeCache.txt
