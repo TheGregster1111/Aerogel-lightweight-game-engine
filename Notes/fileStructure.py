@@ -219,6 +219,16 @@ def build(data, path:str):
                     file.write('')
 
             index += 1
+                index += 1
+                lastWasFile = False
+                continue
+            
+            # File
+            if not os.path.exists(path + item):
+                with open(path + item, 'w') as file:
+                    file.write('')
+
+            index += 1
 
 if sameFolder:
     inputOutputFolder = os.path.dirname(os.path.abspath(__file__)) + "/"
@@ -234,6 +244,9 @@ with open(inputOutputFolder + inputFile, "r") as file1:
         if mode == 1:
             with open(inputOutputFolder + outputFile, "w") as file2:
                 file2.write(output)
+
+    elif mode == 3:
+        build(data, rootFolderLocation)
 
     elif mode == 3:
         build(data, rootFolderLocation)
