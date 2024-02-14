@@ -1,11 +1,23 @@
 # How to build game
 
 Open CMakeLists.txt and switch which COMMAND is commented based on OS.
+
+Linux:
 ```CMake
 add_custom_command(
     TARGET GAME_EXECUTABLE POST_BUILD
-    COMMAND cp -R Assets/ Build/Assets    # Linux   <<<
-    #COMMAND                              # Windows <<<
+    COMMAND cp -R Assets/ Build/Assets     # Linux
+    #COMMAND                               # Windows
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT "Copying assets..."
+)
+```
+Windows:
+```CMake
+add_custom_command(
+    TARGET GAME_EXECUTABLE POST_BUILD
+    #COMMAND cp -R Assets/ Build/Assets    # Linux
+    COMMAND                                # Windows
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Copying assets..."
 )
