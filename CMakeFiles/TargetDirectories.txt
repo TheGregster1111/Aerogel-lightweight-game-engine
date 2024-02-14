@@ -1,4 +1,0 @@
-/home/susanne/source/repos/C++/Aerogel/CMakeFiles/GAME_EXECUTABLE.dir
-/home/susanne/source/repos/C++/Aerogel/CMakeFiles/run.dir
-/home/susanne/source/repos/C++/Aerogel/CMakeFiles/edit_cache.dir
-/home/susanne/source/repos/C++/Aerogel/CMakeFiles/rebuild_cache.dir
